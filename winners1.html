@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>F1 Champions — Past Winners</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ── Base ── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0a0a0a;
+      color: white;
+      font-family: 'Titillium Web', Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Top red accent line (matches main site booking section) ── */
+    body::before {
+      content: '';
+      display: block;
+      height: 4px;
+      background: #e10600;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    /* Small red tag above the title */
+    .section-tag {
+      display: inline-block;
+      background: #e10600;
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      margin-bottom: 14px;
+    }
+
+    .page-header h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .page-header p {
+      color: #888;
+      font-size: 15px;
+    }
+
+    /* ── Cards Grid ── */
+    .cards-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ── Each Winner Card ── */
+    .winner-card {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      border-top: 3px solid transparent;   /* red border appears on hover/open */
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      height: 100%;
+    }
+
+    .winner-card:hover {
+      transform: translateY(-6px);
+      border-top-color: #e10600;
+    }
+
+    /* Driver photo */
+    .winner-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);              /* slight desaturate for editorial feel */
+      transition: filter 0.3s;
+    }
+
+    .winner-card:hover img {
+      filter: grayscale(0%);               /* full color on hover */
+    }
+
+    /* Text area */
+    .card-body {
+      padding: 16px 18px 18px;
+    }
+
+    /* Year badge in top-right of card body */
+    .year-badge {
+      float: right;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #e10600;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      margin-top: 2px;
+    }
+
+    /* Driver name */
+    .card-body h5 {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    /* Clickable arrow toggle */
+    .arrow {
+      cursor: pointer;
+      font-size: 13px;
+      color: #e10600;
+      margin-left: 6px;
+      user-select: none;                   /* prevents text highlight when clicking */
+    }
+
+    /* Divider line above details */
+    .details {
+      display: none;                       /* hidden by default, shown on click */
+      border-top: 1px solid #2a2a2a;
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+
+    /* Each detail row (Team, Wins) */
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      padding: 4px 0;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .detail-row:last-child { border-bottom: none; }
+
+    /* Label on the left */
+    .detail-label {
+      color: #888;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+
+    /* Value on the right */
+    .detail-value {
+      font-weight: 700;
+      color: white;
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #888;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin: 30px 20px 0;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: #e10600; }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Back to main site -->
+  <a href="index.html" class="back-link">← Back to F1 Hub</a>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="section-tag">Hall of Champions</div>
+    <h1>Past World Champions</h1>
+    <p>Formula 1 World Drivers' Championship — 2010 to 2024</p>
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="cards-section">
+    <div class="row g-4">
+
+
+      <!-- CARD: Verstappen 2024 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="max-verstapen-2024-f1-world-champion-four.avif" alt="Max Verstappen">
+          <div class="card-body">
+            <span class="year-badge">2024</span>
+            <h5>Max Verstappen <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">9</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Verstappen 2023 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="max-verstapen-2024-f1-world-champion-four.avif" alt="Max Verstappen">
+          <div class="card-body">
+            <span class="year-badge">2023</span>
+            <h5>Max Verstappen <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">19</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Verstappen 2022 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="max-verstapen-2024-f1-world-champion-four.avif" alt="Max Verstappen">
+          <div class="card-body">
+            <span class="year-badge">2022</span>
+            <h5>Max Verstappen <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">15</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Verstappen 2021 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="max-verstapen-2024-f1-world-champion-four.avif" alt="Max Verstappen">
+          <div class="card-body">
+            <span class="year-badge">2021</span>
+            <h5>Max Verstappen <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Hamilton 2020 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="GettyImages-1809465054-d8535473954e4a98b072d182949e0eff.jpg" alt="Lewis Hamilton">
+          <div class="card-body">
+            <span class="year-badge">2020</span>
+            <h5>Lewis Hamilton <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Mercedes</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">11</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Hamilton 2019 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="GettyImages-1809465054-d8535473954e4a98b072d182949e0eff.jpg" alt="Lewis Hamilton">
+          <div class="card-body">
+            <span class="year-badge">2019</span>
+            <h5>Lewis Hamilton <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Mercedes</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">11</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Hamilton 2018 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="GettyImages-1809465054-d8535473954e4a98b072d182949e0eff.jpg" alt="Lewis Hamilton">
+          <div class="card-body">
+            <span class="year-badge">2018</span>
+            <h5>Lewis Hamilton <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Mercedes</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">11</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Hamilton 2017 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="GettyImages-1809465054-d8535473954e4a98b072d182949e0eff.jpg" alt="Lewis Hamilton">
+          <div class="card-body">
+            <span class="year-badge">2017</span>
+            <h5>Lewis Hamilton <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Mercedes</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">9</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Rosberg 2016 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="rosberg-nico-abu-dhabi_3383081.jpg" alt="Nico Rosberg">
+          <div class="card-body">
+            <span class="year-badge">2016</span>
+            <h5>Nico Rosberg <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Mercedes</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">9</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Hamilton 2015 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="GettyImages-1809465054-d8535473954e4a98b072d182949e0eff.jpg" alt="Lewis Hamilton">
+          <div class="card-body">
+            <span class="year-badge">2015</span>
+            <h5>Lewis Hamilton <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Mercedes</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Hamilton 2014 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="GettyImages-1809465054-d8535473954e4a98b072d182949e0eff.jpg" alt="Lewis Hamilton">
+          <div class="card-body">
+            <span class="year-badge">2014</span>
+            <h5>Lewis Hamilton <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Mercedes</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">11</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Vettel 2013 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="sebastian-vettel-back-in-an-f1-car-1-1687246939.jpg" alt="Sebastian Vettel">
+          <div class="card-body">
+            <span class="year-badge">2013</span>
+            <h5>Sebastian Vettel <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">13</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Vettel 2012 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="sebastian-vettel-back-in-an-f1-car-1-1687246939.jpg" alt="Sebastian Vettel">
+          <div class="card-body">
+            <span class="year-badge">2012</span>
+            <h5>Sebastian Vettel <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Vettel 2011 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="sebastian-vettel-back-in-an-f1-car-1-1687246939.jpg" alt="Sebastian Vettel">
+          <div class="card-body">
+            <span class="year-badge">2011</span>
+            <h5>Sebastian Vettel <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">11</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD: Vettel 2010 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="winner-card">
+          <img src="sebastian-vettel-back-in-an-f1-car-1-1687246939.jpg" alt="Sebastian Vettel">
+          <div class="card-body">
+            <span class="year-badge">2010</span>
+            <h5>Sebastian Vettel <span class="arrow" onclick="toggleDetails(this)">▼</span></h5>
+            <div class="details">
+              <div class="detail-row">
+                <span class="detail-label">Team</span>
+                <span class="detail-value">Red Bull Racing</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Wins</span>
+                <span class="detail-value">5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <script>
+
+    // Runs when the ▼ arrow is clicked on a card
+    function toggleDetails(element) {
+
+      // Find the .details div inside the same card-body
+      let details = element.parentElement.parentElement.querySelector(".details");
+
+      // Toggle: show if hidden, hide if showing
+      if (details.style.display === "block") {
+        details.style.display = "none";
+        element.innerHTML = "▼";
+      } else {
+        details.style.display = "block";
+        element.innerHTML = "▲";
+      }
+    }
+
+  </script>
+
+</body>
+</html>
